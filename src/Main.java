@@ -4,5 +4,6 @@ public class Main {
         Population population=new Population();
         population.createPopulation();
         population.display();
+
     }
 }
