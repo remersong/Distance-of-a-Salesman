@@ -81,24 +81,24 @@ public class Population {
     public void Update() {
         Sort();
         for (int i = population.length / 2; i < population.length; i++) {
-            population[i]=Mutate(population[i]);
+            population[i]=Mutate(population[i-population.length/2]);
         }
     }
 
     public ArrayList<City> Mutate(ArrayList<City> g) {
-        ArrayList<City> b = new ArrayList<City>(g);
+        ArrayList<City> b = new ArrayList<>(g);
         int odds = (int) (Math.random() * 2);
         int rand;
         int rand2;
         City temp;
         if (odds==0){
-            rand=(int)(Math.random()*(b.size()+1)-1);
-            rand2=(int)(Math.random()*(b.size()+1)-1);
+            rand=(int)(Math.random()*(b.size()-2)+1);
+            rand2=(int)(Math.random()*(b.size()-2)+1);
             temp=b.get(rand);
             b.set(rand, b.get(rand2));
             b.set(rand2, temp);
         }
-        return g;
+        return b;
     }
 
 
