@@ -4,6 +4,9 @@ public class Main {
         Population population=new Population();
         population.createPopulation();
         population.display();
-
+        while(1!=2) {
+            population.Update();
+            population.display();
+        }
     }
 }
