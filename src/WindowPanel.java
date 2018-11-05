@@ -4,35 +4,37 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WindowPanel extends JPanel {
-    int gen=1;
+    int gen = 1;
+    Population population = new Population();
+
+
     public WindowPanel(int w, int h) {
         setSize(w, h);
+        population.createPopulation();
+
     }
 
 
+    public void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(3));
+        for (int i=0; i<population.getLowestValue().size()-1; i++){
+            g2.drawLine(population.getLowestValue().get(i).getX(), population.getLowestValue().get(i).getY(), population.getLowestValue().get(i+1).getX(), population.getLowestValue().get(i+1).getY());
+        }
 
-
-
-
-    public void paintComponent(Graphics g){
-        Graphics2D g2 = (Graphics2D)g;
-
-        Population population=new Population();
-        population.createPopulation();
-        Timer timer = new Timer(1000 / 600, new ActionListener() {
+        population.display();
+        population.Update();
+        Timer timer = new Timer(0, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //called 60 times per second
-                population.display();
-                //
-                population.Update();
                 gen++;
                 repaint();
             }
 
         });
         timer.start();
-        population.display();
+
         g2.drawString((Integer.toString(gen)), 100, 100);
         g2.drawRect(5, 5, 5, 5);
         //putting timer (move method) in here accelerates it. Why? Not sure

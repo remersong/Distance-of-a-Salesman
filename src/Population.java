@@ -3,11 +3,15 @@ import java.util.*;
 public class Population {
     TestCities tc = new TestCities();
     ArrayList<City> cities = tc.getCities();
-    ArrayList<City>[] population = new ArrayList[40];
+    ArrayList<City>[] population = new ArrayList[4000];
     ArrayList<City> lowestValue=cities;
 
     public ArrayList<City>[] getPopulation() {
         return population;
+    }
+
+    public ArrayList<City> getLowestValue() {
+        return lowestValue;
     }
 
     public void createPopulation() {
