@@ -3,7 +3,8 @@ import java.util.*;
 public class Population {
     TestCities tc = new TestCities();
     ArrayList<City> cities = tc.getCities();
-    ArrayList<City>[] population = new ArrayList[20];
+    ArrayList<City>[] population = new ArrayList[100];
+    ArrayList<City> lowestValue=cities;
 
 
     public void createPopulation() {
@@ -27,16 +28,36 @@ public class Population {
     public void display() {
         int x=0;
         for (ArrayList<City> b : population) {
+            if (getScore(b)<getScore(lowestValue)){
+                lowestValue=b;
+            }
             System.out.println();
             x++;
             System.out.println("Number " + x + ":  ");
             for (City e : b) {
-                System.out.print(e.getID() + " ");
+                if (e.getID()!=0)
+                System.out.print(e.getID()-1 + " ");
+                else
+                    System.out.print("Origin ");
             }
             System.out.println();
             System.out.println("Distance:" + getScore(b));
 
+
         }
+        System.out.println();
+        System.out.println();
+        System.out.println("Best one: ");
+        System.out.println();
+        for (City e : lowestValue) {
+            if (e.getID()!=0)
+                System.out.print(e.getID()-1 + " ");
+            else
+                System.out.print("Origin ");
+        }
+        System.out.println();
+        System.out.println("Distance:" + getScore(lowestValue));
+        System.out.println();
     }
 
     public boolean containsAll(ArrayList<City> b) {
