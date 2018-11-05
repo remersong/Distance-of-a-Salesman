@@ -4,7 +4,7 @@ public class Main {
         Population population=new Population();
         population.createPopulation();
         population.display();
-        while(1!=2) {
+        for (int i=0; i<2000; i++) {
             population.Update();
             population.display();
         }
