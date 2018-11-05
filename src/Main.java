@@ -1,12 +1,23 @@
+import javax.swing.*;
+import java.awt.*;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Test");
-        Population population=new Population();
-        population.createPopulation();
-        population.display();
-        for (int i=0; i<2000; i++) {
-            population.Update();
-            population.display();
-        }
+
+        JFrame frame = new JFrame("Bouncing Ball Program");
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        int width = 800;
+        int height = 800;
+
+        frame.setPreferredSize(new Dimension(width, height+24));
+
+        JPanel panel = new WindowPanel(width, height);
+        panel.setFocusable(true);
+        panel.grabFocus();
+
+        frame.add(panel);
+        frame.pack();
+        frame.setVisible(true);
     }
+
 }

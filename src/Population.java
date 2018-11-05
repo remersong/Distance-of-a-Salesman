@@ -3,9 +3,12 @@ import java.util.*;
 public class Population {
     TestCities tc = new TestCities();
     ArrayList<City> cities = tc.getCities();
-    ArrayList<City>[] population = new ArrayList[100];
+    ArrayList<City>[] population = new ArrayList[40];
     ArrayList<City> lowestValue=cities;
 
+    public ArrayList<City>[] getPopulation() {
+        return population;
+    }
 
     public void createPopulation() {
         for (int i = 0; i < population.length; i++) {
