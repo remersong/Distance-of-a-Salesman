@@ -17,10 +17,24 @@ public class WindowPanel extends JPanel {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(3));
-        for (int i=0; i<population.getLowestValue().size()-1; i++){
-            g2.drawLine(population.getLowestValue().get(i).getX(), population.getLowestValue().get(i).getY(), population.getLowestValue().get(i+1).getX(), population.getLowestValue().get(i+1).getY());
+        for (City c : population.getCities()) {
+            g2.fillOval(c.getX() - 5, c.getY() - 5, 10, 10);
         }
+        g2.setStroke(new BasicStroke(1));
+        for (int i = 0; i < population.getPopulation().length/2 - 1; i++) {
+            g2.setColor(new Color((int)(Math.random()*255),(int)(Math.random()*255), (int)(Math.random()*255) ));
+
+            for (int c = 0; c < population.getPopulation()[i].size() - 1; c++) {
+                g2.drawLine(population.getPopulation()[i].get(c).getX(), population.getPopulation()[i].get(c).getY(), population.getPopulation()[i].get(c+1).getX(),population.getPopulation()[i].get(c+1).getY());
+            }
+        }
+        g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(3));
+        for (int i = 0; i < population.getLowestValue().size() - 1; i++) {
+            g2.drawLine(population.getLowestValue().get(i).getX(), population.getLowestValue().get(i).getY(), population.getLowestValue().get(i + 1).getX(), population.getLowestValue().get(i + 1).getY());
+        }
+
+
 
         population.display();
         population.Update();

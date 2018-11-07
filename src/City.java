@@ -21,7 +21,7 @@ public class City {
         nextID++;
     }
 
-    public City(City orig){
+    public City(City orig) {
         this.x = orig.x;
         this.y = orig.y;
         this.ID = orig.ID;
@@ -48,7 +48,7 @@ public class City {
 
     @Override
     public String toString() {
-        return "(x: " +getX() + ", " + "y: " + getY() + ")";
+        return "(x: " + getX() + ", " + "y: " + getY() + ")";
     }
 
     public int getID() {

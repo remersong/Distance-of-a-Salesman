@@ -9,7 +9,7 @@ public class TestCities {
 
     public TestCities() {
         cities = new ArrayList<>();
-        cities.add(new City(0,0 ));
+        cities.add(new City(0, 0));
         cities.add(new City(273, 225));
         cities.add(new City(643, 437));
         cities.add(new City(235, 630));

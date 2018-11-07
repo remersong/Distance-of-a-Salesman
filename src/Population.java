@@ -3,8 +3,8 @@ import java.util.*;
 public class Population {
     TestCities tc = new TestCities();
     ArrayList<City> cities = tc.getCities();
-    ArrayList<City>[] population = new ArrayList[25000];
-    ArrayList<City> lowestValue=cities;
+    ArrayList<City>[] population = new ArrayList[10000];
+    ArrayList<City> lowestValue = cities;
 
     public ArrayList<City>[] getPopulation() {
         return population;
@@ -33,10 +33,10 @@ public class Population {
     }
 
     public void display() {
-        int x=0;
+        int x = 0;
         for (ArrayList<City> b : population) {
-            if (getScore(b)<getScore(lowestValue)){
-                lowestValue=b;
+            if (getScore(b) < getScore(lowestValue)) {
+                lowestValue = b;
             }
             x++;
 
@@ -46,8 +46,8 @@ public class Population {
         System.out.println("Best one: ");
         System.out.println();
         for (City e : lowestValue) {
-            if (e.getID()!=0)
-                System.out.print(e.getID()-1 + " ");
+            if (e.getID() != 0)
+                System.out.print(e.getID() - 1 + " ");
             else
                 System.out.print("Origin ");
         }
@@ -71,11 +71,13 @@ public class Population {
         for (int i = 0; i < cit.size() - 1; i++) {
             int xLength = Math.abs(cit.get(i).getX() - cit.get(i + 1).getX());
             int yLength = Math.abs(cit.get(i).getY() - cit.get(i + 1).getY());
-
             sum += Math.sqrt(xLength * xLength + yLength * yLength);
         }
-
         return sum;
+    }
+
+    public ArrayList<City> getCities() {
+        return cities;
     }
 
     public void Sort() { //the holy grail of computer science????
@@ -99,18 +101,18 @@ public class Population {
         Sort();
 
         int rand;
-        int rand1 = (int)(Math.random()*6);
-        rand=1;
-        if (rand1==0)
-            rand= (int)(Math.random()*5)+1;
-        for (int c=0; c<rand; c++) {
+        int rand1 = (int) (Math.random() * 6);
+        rand = 1;
+        if (rand1 == 0)
+            rand = (int) (Math.random() * 6) + 1;
+        for (int c = 0; c < rand; c++) {
             for (int i = population.length / 2; i < population.length; i++) {
                 population[i] = Mutate(population[i - population.length / 2]);
             }
         }
 
-        int scrambleChance = (int)(Math.random()*1000);
-        if (scrambleChance == 14){
+        int scrambleChance = (int) (Math.random() * 1000);
+        if (scrambleChance == 14) {
             Sort();
             scramble();
         }
@@ -122,9 +124,9 @@ public class Population {
         int rand;
         int rand2;
         City temp;
-        if (odds==0){
-            rand=(int)(Math.random()*(b.size()-2)+1);
-            rand2=(int)(Math.random()*(b.size()-2)+1);
+        if (odds == 0) {
+            rand = (int) (Math.random() * (b.size() - 2) + 1);
+            rand2 = (int) (Math.random() * (b.size() - 2) + 1);
             temp = b.get(rand);
             b.set(rand, b.get(rand2));
             b.set(rand2, temp);
@@ -133,10 +135,10 @@ public class Population {
         return b;
     }
 
-    public void scramble(){
+    public void scramble() {
         int rand;
 
-        for (int i = population.length/3; i < population.length; i++) {
+        for (int i = population.length / 3; i < population.length; i++) {
             population[i] = new ArrayList<City>();
             population[i].add(cities.get(0));
             while (!containsAll(population[i])) {
@@ -149,6 +151,7 @@ public class Population {
         }
 
     }
+
 
 }
 
