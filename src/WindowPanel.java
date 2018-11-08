@@ -21,7 +21,7 @@ public class WindowPanel extends JPanel {
             g2.fillOval(c.getX() - 5, c.getY() - 5, 10, 10);
         }
         g2.setStroke(new BasicStroke(1));
-        for (int i = 0; i < population.getPopulation().length/2 - 1; i++) {
+        for (int i = 0; i < population.getPopulation().length/2; i++) {
             g2.setColor(new Color((int)(Math.random()*255),(int)(Math.random()*255), (int)(Math.random()*255) ));
 
             for (int c = 0; c < population.getPopulation()[i].size() - 1; c++) {
@@ -49,7 +49,9 @@ public class WindowPanel extends JPanel {
         });
         timer.start();
 
-        g2.drawString((Integer.toString(gen)), 100, 100);
+        g2.drawString("Gen: " + (Integer.toString(gen)), 100, 700);
+        g2.drawString("Distance: " + (Integer.toString(population.getScore(population.getLowestValue()))), 100, 750);
+
         g2.drawRect(5, 5, 5, 5);
         //putting timer (move method) in here accelerates it. Why? Not sure
     }

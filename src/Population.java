@@ -3,8 +3,9 @@ import java.util.*;
 public class Population {
     TestCities tc = new TestCities();
     ArrayList<City> cities = tc.getCities();
-    ArrayList<City>[] population = new ArrayList[10000];
+    ArrayList<City>[] population = new ArrayList[20000];
     ArrayList<City> lowestValue = cities;
+    int x = 0;
 
     public ArrayList<City>[] getPopulation() {
         return population;
@@ -33,10 +34,17 @@ public class Population {
     }
 
     public void display() {
-        int x = 0;
         for (ArrayList<City> b : population) {
             if (getScore(b) < getScore(lowestValue)) {
                 lowestValue = b;
+                //moved here
+//                int scrambleChance = (int) (Math.random() * 4);
+//                if (scrambleChance == 0) {
+//                    //This type of scramble doesn't work
+//                    //Turns out its close to impossible that a scrambled chromosome would survive after running for over like a second...
+//                    Sort();
+//                    scramble();
+//                }
             }
             x++;
 
@@ -79,7 +87,16 @@ public class Population {
     public ArrayList<City> getCities() {
         return cities;
     }
+    public boolean AllSame(){
+        boolean same=true;
+        for (int i =0; i<population.length/2; i++){
+            if (population[i]!=population[0]){
+                same=false;
+            }
+        }
+        return same;
 
+    }
     public void Sort() { //the holy grail of computer science????
         List list = Arrays.asList(population); //OMIT
         Collections.sort(list, new Comparator<ArrayList<City>>() { //USE POPULATION INSTEAD OF LIST
@@ -110,12 +127,13 @@ public class Population {
                 population[i] = Mutate(population[i - population.length / 2]);
             }
         }
+//        if (x>5000)
+//        if (AllSame()){
+//            scramble();
+//        }
 
-        int scrambleChance = (int) (Math.random() * 1000);
-        if (scrambleChance == 14) {
-            Sort();
-            scramble();
-        }
+
+
     }
 
     public ArrayList<City> Mutate(ArrayList<City> g) {
@@ -135,10 +153,13 @@ public class Population {
         return b;
     }
 
+
     public void scramble() {
         int rand;
-
-        for (int i = population.length / 3; i < population.length; i++) {
+        for (int i=0; i<1000000; i++) {
+            System.out.println("Scramble");
+        }
+        for (int i = 0; i < population.length; i++) {
             population[i] = new ArrayList<City>();
             population[i].add(cities.get(0));
             while (!containsAll(population[i])) {
